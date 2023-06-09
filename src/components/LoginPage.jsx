@@ -105,7 +105,7 @@ const Loginform = () => {
               fontSize: "2.8rem",
               fontWeight: "bolder",
               textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              // border: "1px solid #000000",
+            
             }}>
             PEACE OF MIND
           </h2>
@@ -146,11 +146,24 @@ const Loginform = () => {
           id="outlined-multiline-flexible"
             label="Email Address"
             required
+            sx={{
+                width: "200px", 
+                "& label": {
+                  fontSize: "0.8rem", 
+                },
+                "& fieldset": {
+                  
+                  backgroundColor: "white",
+                  borderRadius: "10px",
+                  borderColor: "white",
+                },
+              }}
+
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           {errors.email && (
-            <span style={{ color: "red" }}>{errors.email}</span>
+            <span style={{ color: "red" , fontSize: "0.8rem"}}>{errors.email}</span>
           )}
         </FormControl>
       </div>
@@ -165,11 +178,23 @@ const Loginform = () => {
             label="Password"
             type="password"
             required
+            sx={{
+                width: "200px", 
+                "& label": {
+                  fontSize: "0.8rem", 
+                },
+                "& fieldset": {
+                 
+                  backgroundColor: "white",
+                  borderRadius: "10px",
+                  borderColor: "white",
+                },
+              }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           {errors.password && (
-            <span style={{ color: "red" }}>{errors.password}</span>
+            <span style={{ color: "red", fontSize: "0.8rem" }}>{errors.password}</span>
           )}
         </FormControl>
       </div>
