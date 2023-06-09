@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import PersonIcon from '@mui/icons-material/Person';
 
-const LoginForm = () => {
+const Loginform = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleForm = async (e) => {
+
+
+  const handleLogin=(e)=>{
+
     e.preventDefault();
+    console.log('hello');
+    fetch('http://localhost:8080/user/login',{
+      method:'post',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({email,password})
+    })
 
-    const newUser = {
-      email: email,
-      password: password
-    };
-
-    try {
-      const response = await fetch("http://localhost:8082/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
-      if (response.ok) {
-        console.log("New User is registered!!!");
-        console.log(newUser);
-      } else {
-        console.log("Some error occurred");
+    .then(response=>{
+      if(response.ok){
+        console.log("Login SuccessFully");
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      else{
+        console.log("Login Fail");
+      }
+    })
+    .catch(error=>{
+      console.error("Error",error);
+    })
+  }
+
   return (
     <Box
       component="form"
@@ -50,15 +57,17 @@ const LoginForm = () => {
       }}
       noValidate
       autoComplete="off"
-      onSubmit={handleForm}
     >
       <div>
         <h1>Sign Up</h1>
-        <div style={{ marginRight: '800px', marginTop: '200px', marginBottom: '-200px', fontFamily: 'cursive' }}>
+        <div style={{ marginTop: '100px', fontFamily: 'cursive' }}>
           <h2>PEACE OF MIND</h2>
           <p>It's okay not to be okay</p>
         </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '19px', borderRadius: '10px' }}>
       </div>
+      </div>
+
       <div>
         <TextField
           id="outlined-multiline-flexible"
@@ -68,7 +77,7 @@ const LoginForm = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div style={{ marginRight: '227px' }}>
+      <div style={{ marginRight: '227px',marginLeft:'220px'}}>
         <TextField
           id="outlined-multiline-flexible"
           label="Password"
@@ -80,7 +89,7 @@ const LoginForm = () => {
       </div>
       
       <div style={{ marginBottom: '192px', borderRadius: '10px' }}>
-        <button type="submit" style={{ borderRadius: '10px', backgroundColor: '#6b8b85', color: 'white',fontSize:'20px' }}>
+        <button type="submit" onClick={handleLogin} style={{ borderRadius: '10px', backgroundColor: '#6b8b85', color: 'white',fontSize:'20px' }}>
             Login
         </button>
       </div>
@@ -88,4 +97,4 @@ const LoginForm = () => {
   );
 }
 
-export default LoginForm;
+export default Loginform;
