@@ -97,7 +97,9 @@ const Loginform = () => {
         />
       </div>
       <div>
-        <Text>
+        <Text
+          name="password"
+        />
       </div>
       
       <div style={{ marginBottom: '192px', borderRadius: '10px' ,marginLeft:'600px'}}>
