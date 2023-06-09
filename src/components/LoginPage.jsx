@@ -138,7 +138,7 @@ const Loginform = () => {
           }}></div>
        </div>
        <div style={{ marginLeft: "750px" }}>
-   <label style={{ marginRight: "22rem", fontSize: "0.8rem" }}>Enter Your Email:</label>
+   <label style={{ marginRight: "19rem", fontSize: "0.8rem" }}>Enter Your Email:</label>
      <br />
         {/* Email Field */}
         <FormControl error={Boolean(errors.email)} sx= {{width: "500px"}}>
@@ -169,7 +169,7 @@ const Loginform = () => {
       </div>
 
       <div style={{ marginLeft: "750px", marginTop: "10px" }}>
-    <label style={{ marginRight: "20rem", fontSize: "0.8rem" }}>Enter Your Password:</label>
+    <label style={{ marginRight: "16rem", fontSize: "0.8rem" }}>Enter Your Password:</label>
     <br />
         {/* Password Field */}
         <FormControl error={Boolean(errors.password)} sx= {{width: "500px"}}>
