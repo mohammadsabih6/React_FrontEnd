@@ -263,7 +263,7 @@ const Loginform = () => {
               paddingTop: "18px",
               marginBottom: "30px",
               fontFamily: "Quicksand, sans-serif",
-              fontSize: "12px",
+              fontSize: "13px",
               fontWeight: "bold",
               color: "black",
             }}>
