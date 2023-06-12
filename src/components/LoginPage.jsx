@@ -1,5 +1,7 @@
 import { useState } from "react";
+import bg from "../images/bg.jpeg";
 // import { borderColor, width } from "@mui/system";
+
 import {
   Box,
   TextField,
@@ -67,209 +69,210 @@ const Loginform = () => {
 
   return (
     <>
-    <Box
-      component="form"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-       "& .MuiTextField-root": {
-          m: 1,
-          width: "18rem",
-          backgroundColor: "white",
-          border: "none",
-          color: "black",
-          borderRadius: "10px",
-          borderColor: "#b0d2cb",
-        },
-        marginTop: "100px",
-        backgroundImage:
-          "url(https://thorekandersonville.org/wp-content/uploads/2023/04/Thorek-Andersonville-News.png)",
-        backgroundRepeat: "no-repeat",
-        borderRadius: "30px",
-        marginLeft: "250px",
-        height: "300%",
-        width: "70%",
-      }}
-      
-      noValidate
-      autoComplete="on"
-    >
-
-<div style={{ marginLeft: "600px" }}>
-
-      <div style={{ marginTop: "70px" }}>
-           <h2
-            style={{
-              fontFamily: "Quicksand, sans-serif",
-              fontSize: "2.8rem",
-              fontWeight: "bolder",
-              textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-            
-            }}>
-            PEACE OF MIND
-          </h2>
-         <p
-            style={{
-              marginTop: "-35px",
-             fontFamily: "Quicksand, sans-serif",
-             fontSize: "20px",            
-                fontWeight: "bold",
-            }}>
-          It's okay not to be okay
-         </p>
-        </div>
-       <h1
-           style={{
-            marginTop: "40px",
-             fontFamily: "Quicksand, sans-serif",
-            fontSize: "1.8rem",
-            fontWeight: "bolder",
-           }}>
-          Login Now
-                   </h1>
-                          <div
-          style={{
-            display: "flex",
-           justifyContent: "center",
-            marginBottom: "19px",
-            borderRadius: "10px",
-            borderColor: "white",
-          }}></div>
-       </div>
-       <div style={{ marginLeft: "750px" }}>
-   <label style={{ marginRight: "19rem", fontSize: "0.8rem" }}>Enter Your Email:</label>
-     <br />
-        {/* Email Field */}
-        <FormControl error={Boolean(errors.email)} sx= {{width: "500px"}}>
-          <TextField
-          id="outlined-multiline-flexible"
-            label="Email Address"
-            required
-            sx={{
-                width: "200px", 
-                "& label": {
-                  fontSize: "0.8rem", 
-                },
-                "& fieldset": {
-                  
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                  borderColor: "white",
-                },
-              }}
-
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {errors.email && (
-            <span style={{ color: "red" , fontSize: "0.8rem"}}>{errors.email}</span>
-          )}
-        </FormControl>
-      </div>
-
-      <div style={{ marginLeft: "750px", marginTop: "10px" }}>
-    <label style={{ marginRight: "16rem", fontSize: "0.8rem" }}>Enter Your Password:</label>
-    <br />
-        {/* Password Field */}
-        <FormControl error={Boolean(errors.password)} sx= {{width: "500px"}}>
-          <TextField
-           id="outlined-multiline-flexible"
-            label="Password"
-            type="password"
-            required
-            sx={{
-                width: "200px", 
-                "& label": {
-                  fontSize: "0.8rem", 
-                },
-                "& fieldset": {
-                 
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                  borderColor: "white",
-                },
-              }}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {errors.password && (
-            <span style={{ color: "red", fontSize: "0.8rem" }}>{errors.password}</span>
-          )}
-        </FormControl>
-      </div>
-      
-
-      <div>
-       <a
-          href="#"
-          style={{
-            marginLeft: "47rem",
-
-            fontFamily: "Quicksand, sans-serif",
-            fontSize: "12px",
-            fontWeight: "bold",
-            color: "black",
-            textDecoration: "none",
-          }}>
-          Forgotten Password?
-        </a>
-      </div>
-
-
       <div
+        className="login-container"
         style={{
-          marginBottom: "5px",
-          borderRadius: "10px",
-          marginLeft: "600px",
+          backgroundImage: `url(${bg})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          boxSizing: "border-box",
         }}>
+        <Box
+          component="form"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            "& .MuiTextField-root": {
+              m: 1,
+              width: "18rem",
+              backgroundColor: "white",
+              border: "none",
+              color: "black",
+              borderRadius: "10px",
+              borderColor: "#b0d2cb",
+            },
+          
+          }}
+          noValidate
+          autoComplete="on">
+          <div style={{ marginLeft: "37%" }}>
+            <div style={{ marginTop: "13%" }}>
+              <h2
+                style={{
+                  fontFamily: "Quicksand, sans-serif",
+                  fontSize: "2.8rem",
+                  fontWeight: "bolder",
+                  textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}>
+                PEACE OF MIND
+              </h2>
+              <p
+                style={{
+                  marginTop: "-35px",
+                  fontFamily: "Quicksand, sans-serif",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                }}>
+                It's okay not to be okay
+              </p>
+            </div>
+            <h1
+              style={{
+                marginTop: "8%",
+                fontFamily: "Quicksand, sans-serif",
+                fontSize: "1.8rem",
+                fontWeight: "bolder",
+              }}>
+              Login Now
+            </h1>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: "19px",
+                borderRadius: "10px",
+                borderColor: "white",
+              }}></div>
+          </div>
+          <div style={{ marginLeft: "50%" }}>
+            <label style={{ marginRight: "23rem", fontSize: "0.8rem" }}>
+              Enter Your Email:
+            </label>
+            <br />
+            {/* Email Field */}
+            <FormControl error={Boolean(errors.email)} sx={{ width: "500px" }}>
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Email Address"
+                required
+                sx={{
+                  width: "200px",
+                  "& label": {
+                    fontSize: "0.8rem",
+                  },
+                  "& fieldset": {
+                    color: "black",
 
-        </div>
+                    borderRadius: "10px",
+                    borderColor: "white",
+                  },
+                }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {errors.email && (
+                <span style={{ color: "red", fontSize: "0.8rem" }}>
+                  {errors.email}
+                </span>
+              )}
+            </FormControl>
+          </div>
 
+          <div style={{ marginLeft: "50%", marginTop: "10px" }}>
+            <label style={{ marginRight: "22rem", fontSize: "0.8rem" }}>
+              Enter Your Password:
+            </label>
+            <br />
+            {/* Password Field */}
+            <FormControl
+              error={Boolean(errors.password)}
+              sx={{ width: "500px" }}>
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Password"
+                type="password"
+                required
+                sx={{
+                  width: "200px",
+                  "& label": {
+                    fontSize: "0.8rem",
+                  },
+                  "& fieldset": {
+                    // backgroundColor: "white",
+                    color: "black",
 
-      <Button
-        type="submit"
-        onClick={handleLogin}
-        style={{
-                      borderRadius: "10px",
-                      marginLeft: "60rem",
-                      padding: "5px",
-                      width: "80px",
-                      marginTop: "15px",
-            
-                    //   marginRight: "20px",
-                      color: "black",
-                      fontSize: "20px",
-                      ontFamily: "Quicksand, sans-serif",
-                      backgroundColor: "white",
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      border: "1px solid black"
-                    }}>
-                    Login
-       </Button>
-                  <p
-                    style={{
-                      marginLeft: "47rem",
-                      paddingTop: "18px",
-                      marginBottom: "30px",
-                      fontFamily: "Quicksand, sans-serif",
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      color: "black",
-                    }}>
-                    Don't have an account? <a href="">SignUp</a>
-                  </p>
-                </Box>
-                </> 
-            
-            
-   
+                    borderRadius: "10px",
+                    borderColor: "white",
+                  },
+                }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {errors.password && (
+                <span
+                  style={{
+                    color: "red",
+                    fontSize: "0.8rem",
+                  }}>
+                  {errors.password}
+                </span>
+              )}
+            </FormControl>
+          </div>
+
+          <div>
+            <a
+              href="#"
+              style={{
+                marginLeft: "53rem",
+
+                fontFamily: "Quicksand, sans-serif",
+                fontSize: "12px",
+                fontWeight: "bold",
+                color: "black",
+                textDecoration: "none",
+              }}>
+              Forgotten Password?
+            </a>
+          </div>
+
+          <div
+            style={{
+              marginBottom: "20px",
+              borderRadius: "10px",
+              // marginLeft: "600px",
+            }}></div>
+
+          <Button
+            type="submit"
+            onClick={handleLogin}
+            style={{
+              borderRadius: "10px",
+              marginLeft: "77rem",
+              padding: "5px",
+              width: "80px",
+              marginTop: "15px",
+
+              
+              color: "black",
+              fontSize: "20px",
+              ontFamily: "Quicksand, sans-serif",
+              backgroundColor: "white",
+              fontSize: "12px",
+              fontWeight: "bold",
+              border: "1px solid black",
+            }}>
+            Login
+          </Button>
+          <p
+            style={{
+              marginLeft: "45rem",
+              paddingTop: "18px",
+              marginBottom: "30px",
+              fontFamily: "Quicksand, sans-serif",
+              fontSize: "12px",
+              fontWeight: "bold",
+              color: "black",
+            }}>
+            Don't have an account? <a href="">SignUp</a>
+          </p>
+        </Box>
+      </div>
+    </>
   );
-                
-                }
-            
-        
-    
+};
 
 export default Loginform;
