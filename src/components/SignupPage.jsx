@@ -3,8 +3,8 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import plan_background from "../images/plan_background.jpeg";
 import SvgIcon from "@mui/material/SvgIcon";
-import doctoricon from "../images/doctoricon.png";
-import patienticon from "../images/patienticon.png";
+import doctor from "../images/doctor.png";
+import patient from "../images/patient.png";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -320,7 +320,7 @@ const SignupForm = () => {
               }}>
               <div style={{ marginRight: "10%" }}>
                 <img
-                  src={doctoricon}
+                  src={doctor}
                   style={{ width: "5rem", height: "5rem" }}
                 />{" "}
                 <br />
@@ -334,7 +334,7 @@ const SignupForm = () => {
               </div>
               <div style={{ marginTop: "" }}>
                 <img
-                  src={patienticon}
+                  src={patient}
                   style={{ width: "5rem", height: "5rem" }}
                 />{" "}
                 <br />
