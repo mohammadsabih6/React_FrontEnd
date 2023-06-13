@@ -3,14 +3,16 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import plan_background from "../images/plan_background.jpeg";
 import SvgIcon from '@mui/material/SvgIcon';
-import counselor from '../images/counselor.svg';
+import doctoricon from '../images/doctoricon.png';
+import patienticon from '../images/patienticon.png';
+
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-import PersonIcon from "@mui/icons-material/Person";
+
 
 const SignupForm = () => {
   const [fname, setFname] = useState("");
@@ -25,6 +27,7 @@ const SignupForm = () => {
   const [specialization, setSpecialization] = useState("");
   const [description, setDescription] = useState("");
   const [guardian_phone_number, setGuardian_phone_number] = useState("");
+  const [errors, setErrors] = useState({fname: "", lname: "", phone: "", address: "", email: "", cnic: "", password: "", gender: "", role: "", specialization: "", description: "", guardian_phone_number: ""});
 
   const resetForm = () => {
     setFname("");
@@ -41,6 +44,24 @@ const SignupForm = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
+
+    const fnameError = validateFname(fname);
+    const lnameError = validateLname(lname);
+    const phoneError = validatePhone(phone);
+    const addressError = validateAddress(address);
+    const emailError = validateEmail(email);
+    const cnicError = validateCnic(cnic);
+    const passwordError = validatePassword(password);
+    const genderError = validateGender(gender);
+    const guardian_phone_numberError = validateGuardianPhoneNumber(guardian_phone_number);
+
+    if (emailError || passwordError || fnameError || lnameError ||fnameError || phoneError || cnicError || genderError ||guardian_phone_numberError) {
+
+      setErrors({ email: emailError, password: passwordError , 
+        phone: phoneError,fname: fnameError, lname: lnameError, cnic: cnicError, gender: genderError, guardian_phone_number: guardian_phone_numberError, address: addressError });
+      return;
+    }
+
 
     const newUser = {
       firstName: fname,
@@ -73,6 +94,83 @@ const SignupForm = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const validateFname = (fname) => {
+    if (!fname) {
+      return "First name is required";
+    }
+    return "";
+  };
+
+  const validateLname = (lname) => {
+    if (!lname) {
+      return "Last name is required";
+    }
+    return "";
+  };
+
+  const validatePhone = (phone) => {
+    const phoneRegex = /^\d{10}$/;
+    if (!phone) {
+      return "Phone number is required";
+    } else if (!phoneRegex.test(phone)) {
+      return "Invalid phone number";
+    }
+    return "";
+  };
+
+  const validateAddress = (address) => {
+    if (!address) {
+      return "Address is required";
+    }
+    return "";
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      return "Email is required";
+    } else if (!emailRegex.test(email)) {
+      return "Invalid email address";
+    }
+    return "";
+  };
+
+  const validateCnic = (cnic) => {
+    const cnicRegex = /^\d{5}-\d{7}-\d$/;
+    if (!cnic) {
+      return "CNIC is required";
+    } else if (!cnicRegex.test(cnic)) {
+      return "Invalid CNIC format (e.g., 12345-1234567-1)";
+    }
+    return "";
+  };
+
+  const validatePassword = (password) => {
+    if (!password) {
+      return "Password is required";
+    } else if (password.length < 6) {
+      return "Password must be at least 6 characters long";
+    }
+    return "";
+  };
+
+  const validateGender = (gender) => {
+    if (!gender) {
+      return "Gender is required";
+    }
+    return "";
+  };
+
+  const validateGuardianPhoneNumber = (guardian_phone_number) => {
+    const phoneRegex = /^\d{10}$/;
+    if (!guardian_phone_number) {
+      return "Guardian phone number is required";
+    } else if (!phoneRegex.test(guardian_phone_number)) {
+      return "Invalid phone number";
+    }
+    return "";
   };
 
   const handleGenderChange = (event) => {
@@ -164,22 +262,19 @@ const SignupForm = () => {
                 marginTop: "-10rem",
               }}>
               <div style={{ marginRight: "10%" }}>
+              <img src={doctoricon} style={{ width: '5rem', height: '5rem' }}/> <br />
                 <FormControlLabel
                   value="COUNSELOR"
                   control={<Radio />}
                   label="COUNSELOR"
                   checked={role === "COUNSELOR"}
                   onChange={handleRoleChange}
-                  icon={
-                    <SvgIcon style={{ width: '2rem', height: '2rem' }}>
-                    <img src={counselor} alt="Counselor Icon" style={{ width: '100%', height: '100%' }} />
-                  </SvgIcon>
-                  }
-
+          
                 />
               </div>
               <div style={{ marginTop: "" }}>
-                <PersonIcon />
+              <img src={patienticon} style={{ width: '5rem', height: '5rem' }}/> <br />
+            
                 <FormControlLabel
                   value="PATIENT"
                   control={<Radio />}
@@ -204,7 +299,8 @@ const SignupForm = () => {
                 <TextField
                   id="outlined-multiline-flexible"
                   label="First Name"
-                  required
+                  error={errors.fname ? true : false}
+                  helperText={errors.fname}  //error setting
                   value={fname} 
                   onChange={(e) => setFname(e.target.value)}
                 />
@@ -217,7 +313,8 @@ const SignupForm = () => {
                 <TextField
                   id="outlined-multiline-flexible"
                   label="Last Name"
-                  required
+                  error={errors.lname ? true : false}
+                  helperText={errors.lname}
                   value={lname}
                   onChange={(e) => setLname(e.target.value)}
                 />
@@ -244,7 +341,9 @@ const SignupForm = () => {
                 <TextField
                   id="outlined-multiline-flexible"
                   label="Email Address"
-                  required
+                  error={errors.email ? true : false}
+                  helperText={errors.email}
+                  fullWidth
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -260,7 +359,8 @@ const SignupForm = () => {
                 <TextField
                   id="outlined-multiline-flexible"
                   label="CNIC"
-                  required
+                  error={errors.cnic ? true : false}
+                  helperText={errors.cnic}
                   value={cnic}
                   onChange={(e) => setCnic(e.target.value)}
                 />
@@ -288,7 +388,8 @@ const SignupForm = () => {
                       <TextField
                         id="outlined-multiline-flexible"
                         label="Specialization"
-                        required
+                        error={errors.specialization ? true : false}
+                  helperText={errors.specialization}
                         value={specialization}
                         onChange={(e) => setSpecialization(e.target.value)}
                       />
@@ -298,7 +399,8 @@ const SignupForm = () => {
                         style={{ marginLeft: "1.5rem" }}
                         id="outlined-multiline-flexible"
                         label="Description"
-                        required
+                        error={errors.description ? true : false}
+                  helperText={errors.description}
                         multiline
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -329,7 +431,8 @@ const SignupForm = () => {
                   id="outlined-multiline-flexible"
                   label="Password"
                   type="password"
-                  required
+                  error={errors.password ? true : false}
+                  helperText={errors.password}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -341,7 +444,8 @@ const SignupForm = () => {
                   <TextField
                     id="outlined-multiline-flexible"
                     label="phone"
-                    required
+                    error={errors.phone ? true : false}
+                  helperText={errors.phone}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
@@ -366,7 +470,8 @@ const SignupForm = () => {
                     <TextField
                       id="outlined-multiline-flexible"
                       label="guardian_phone_number"
-                      required
+                      error={errors.guardian_phone_number ? true : false}
+                      helperText={errors.guardian_phone_number}
                       value={guardian_phone_number}
                       onChange={(e) => setGuardian_phone_number(e.target.value)}
                     />
@@ -377,7 +482,7 @@ const SignupForm = () => {
                 <p>
                   Select Gender:
                 
-                <FormControl component="fieldset">
+                <FormControl component="fieldset" error={errors.gender ? true : false}>
                   <RadioGroup
                     aria-label="gender"
                     name="gender"
@@ -399,6 +504,9 @@ const SignupForm = () => {
                       label="Male"
                     />
                   </RadioGroup>
+                  {errors.gender && (
+                    <div style={{ color: "red" }}>{errors.gender}</div>
+                  )}
                 </FormControl>
                 </p>
               </div>
