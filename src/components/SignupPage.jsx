@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import plan_background from "../images/plan_background.jpeg";
-import SvgIcon from '@mui/material/SvgIcon';
-import doctoricon from '../images/doctoricon.png';
-import patienticon from '../images/patienticon.png';
-
+import SvgIcon from "@mui/material/SvgIcon";
+import doctor from "../images/doctor.png";
+import patient from "../images/patient.png";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-
 
 const SignupForm = () => {
   const [fname, setFname] = useState("");
@@ -27,7 +25,21 @@ const SignupForm = () => {
   const [specialization, setSpecialization] = useState("");
   const [description, setDescription] = useState("");
   const [guardian_phone_number, setGuardian_phone_number] = useState("");
-  const [errors, setErrors] = useState({fname: "", lname: "", phone: "", address: "", email: "", cnic: "", password: "", gender: "", role: "", specialization: "", description: "", guardian_phone_number: ""});
+
+  const [errors, setErrors] = useState({
+    fname: "",
+    lname: "",
+    phone: "",
+    address: "",
+    email: "",
+    cnic: "",
+    password: "",
+    gender: "",
+    role: "",
+    specialization: "",
+    description: "",
+    guardian_phone_number: "",
+  });
 
   const resetForm = () => {
     setFname("");
@@ -39,6 +51,8 @@ const SignupForm = () => {
     setPassword("");
     setGender("");
     setRole("");
+    setDescription("");
+    setSpecialization("");
     setGuardian_phone_number("");
   };
 
@@ -53,15 +67,41 @@ const SignupForm = () => {
     const cnicError = validateCnic(cnic);
     const passwordError = validatePassword(password);
     const genderError = validateGender(gender);
-    const guardian_phone_numberError = validateGuardianPhoneNumber(guardian_phone_number);
+    const guardian_phone_numberError = validateGuardianPhoneNumber(
+      guardian_phone_number
+    );
+    const descriptionError = validateDescription(description);
+    const SpecializationError = validateSpecialization(specialization);
 
-    if (emailError || passwordError || fnameError || lnameError ||fnameError || phoneError || cnicError || genderError ||guardian_phone_numberError) {
+    if (
+      emailError ||
+      passwordError ||
+      fnameError ||
+      lnameError ||
+      fnameError ||
+      phoneError ||
+      cnicError ||
+      genderError ||
+      guardian_phone_numberError ||
+      SpecializationError ||
+      descriptionError
+    ) {
+      setErrors({
+        email: emailError,
+        password: passwordError,
+        phone: phoneError,
+        fname: fnameError,
+        lname: lnameError,
+        cnic: cnicError,
+        gender: genderError,
+        specialization: SpecializationError,
+        description: descriptionError,
 
-      setErrors({ email: emailError, password: passwordError , 
-        phone: phoneError,fname: fnameError, lname: lnameError, cnic: cnicError, gender: genderError, guardian_phone_number: guardian_phone_numberError, address: addressError });
+        guardian_phone_number: guardian_phone_numberError,
+        address: addressError,
+      });
       return;
     }
-
 
     const newUser = {
       firstName: fname,
@@ -73,11 +113,14 @@ const SignupForm = () => {
       password: password,
       gender: gender,
       role: role,
+      specialization: specialization,
+      description: description,
+
       guardian_phone_number: guardian_phone_number,
     };
 
     try {
-      const response = await fetch("http://localhost:8080/user/signup", {
+      const response = await fetch("http://localhost:8082/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,14 +143,14 @@ const SignupForm = () => {
     if (!fname) {
       return "First name is required";
     }
-    return "";
+    return null;
   };
 
   const validateLname = (lname) => {
     if (!lname) {
       return "Last name is required";
     }
-    return "";
+    return null;
   };
 
   const validatePhone = (phone) => {
@@ -117,14 +160,14 @@ const SignupForm = () => {
     } else if (!phoneRegex.test(phone)) {
       return "Invalid phone number";
     }
-    return "";
+    return null;
   };
 
   const validateAddress = (address) => {
     if (!address) {
       return "Address is required";
     }
-    return "";
+    return null;
   };
 
   const validateEmail = (email) => {
@@ -134,7 +177,7 @@ const SignupForm = () => {
     } else if (!emailRegex.test(email)) {
       return "Invalid email address";
     }
-    return "";
+    return null;
   };
 
   const validateCnic = (cnic) => {
@@ -144,7 +187,7 @@ const SignupForm = () => {
     } else if (!cnicRegex.test(cnic)) {
       return "Invalid CNIC format (e.g., 12345-1234567-1)";
     }
-    return "";
+    return null;
   };
 
   const validatePassword = (password) => {
@@ -153,14 +196,14 @@ const SignupForm = () => {
     } else if (password.length < 6) {
       return "Password must be at least 6 characters long";
     }
-    return "";
+    return null;
   };
 
   const validateGender = (gender) => {
     if (!gender) {
       return "Gender is required";
     }
-    return "";
+    return null;
   };
 
   const validateGuardianPhoneNumber = (guardian_phone_number) => {
@@ -170,7 +213,21 @@ const SignupForm = () => {
     } else if (!phoneRegex.test(guardian_phone_number)) {
       return "Invalid phone number";
     }
-    return "";
+    return null;
+  };
+
+  const validateSpecialization = (specialization) => {
+    if (!specialization) {
+      return "Specialization is required";
+    }
+    return null;
+  };
+
+  const validateDescription = (description) => {
+    if (!description) {
+      return "Description is required";
+    }
+    return null;
   };
 
   const handleGenderChange = (event) => {
@@ -262,19 +319,25 @@ const SignupForm = () => {
                 marginTop: "-10rem",
               }}>
               <div style={{ marginRight: "10%" }}>
-              <img src={doctoricon} style={{ width: '5rem', height: '5rem' }}/> <br />
+                <img
+                  src={doctor}
+                  style={{ width: "5rem", height: "5rem" }}
+                />{" "}
+                <br />
                 <FormControlLabel
                   value="COUNSELOR"
                   control={<Radio />}
                   label="COUNSELOR"
                   checked={role === "COUNSELOR"}
                   onChange={handleRoleChange}
-          
                 />
               </div>
               <div style={{ marginTop: "" }}>
-              <img src={patienticon} style={{ width: '5rem', height: '5rem' }}/> <br />
-            
+                <img
+                  src={patient}
+                  style={{ width: "5rem", height: "5rem" }}
+                />{" "}
+                <br />
                 <FormControlLabel
                   value="PATIENT"
                   control={<Radio />}
@@ -300,8 +363,8 @@ const SignupForm = () => {
                   id="outlined-multiline-flexible"
                   label="First Name"
                   error={errors.fname ? true : false}
-                  helperText={errors.fname}  //error setting
-                  value={fname} 
+                  helperText={errors.fname} //error setting
+                  value={fname}
                   onChange={(e) => setFname(e.target.value)}
                 />
               </div>
@@ -309,7 +372,6 @@ const SignupForm = () => {
                 style={{
                   paddingLeft: "1rem",
                 }}>
-      
                 <TextField
                   id="outlined-multiline-flexible"
                   label="Last Name"
@@ -374,8 +436,6 @@ const SignupForm = () => {
                   flexDirection: "row",
                   marginLeft: "50rem",
                 }}>
-                
-
                 {role === "COUNSELOR" && (
                   <div
                     style={{
@@ -389,7 +449,7 @@ const SignupForm = () => {
                         id="outlined-multiline-flexible"
                         label="Specialization"
                         error={errors.specialization ? true : false}
-                  helperText={errors.specialization}
+                        helperText={errors.specialization}
                         value={specialization}
                         onChange={(e) => setSpecialization(e.target.value)}
                       />
@@ -400,7 +460,7 @@ const SignupForm = () => {
                         id="outlined-multiline-flexible"
                         label="Description"
                         error={errors.description ? true : false}
-                  helperText={errors.description}
+                        helperText={errors.description}
                         multiline
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -445,7 +505,7 @@ const SignupForm = () => {
                     id="outlined-multiline-flexible"
                     label="phone"
                     error={errors.phone ? true : false}
-                  helperText={errors.phone}
+                    helperText={errors.phone}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
@@ -463,9 +523,8 @@ const SignupForm = () => {
                   marginTop: "1rem",
                 }
               }>
-                <div className="guardianNumber">
-
-                  {role === "PATIENT" && (
+              <div className="guardianNumber">
+                {role === "PATIENT" && (
                   <div style={{}}>
                     <TextField
                       id="outlined-multiline-flexible"
@@ -477,42 +536,41 @@ const SignupForm = () => {
                     />
                   </div>
                 )}
-                </div>
-              <div style={{marginTop: "5px", marginLeft: "10px"}}>
+              </div>
+              <div style={{ marginTop: "5px", marginLeft: "10px" }}>
                 <p>
                   Select Gender:
-                
-                <FormControl component="fieldset" error={errors.gender ? true : false}>
-                  <RadioGroup
-                    aria-label="gender"
-                    name="gender"
-                    value={gender}
-                    onChange={handleGenderChange}
-                    style={{
-                      flexDirection: "row",
-                     marginTop: "-10px",
-                      paddingLeft: "1rem",
-                    }}>
-                    <FormControlLabel
-                      value="female"
-                      control={<Radio />}
-                      label="Female"
-                    />
-                    <FormControlLabel
-                      value="male"
-                      control={<Radio />}
-                      label="Male"
-                    />
-                  </RadioGroup>
-                  {errors.gender && (
-                    <div style={{ color: "red" }}>{errors.gender}</div>
-                  )}
-                </FormControl>
+                  <FormControl
+                    component="fieldset"
+                    error={errors.gender ? true : false}>
+                    <RadioGroup
+                      aria-label="gender"
+                      name="gender"
+                      value={gender}
+                      onChange={handleGenderChange}
+                      style={{
+                        flexDirection: "row",
+                        marginTop: "-10px",
+                        paddingLeft: "1rem",
+                      }}>
+                      <FormControlLabel
+                        value="female"
+                        control={<Radio />}
+                        label="Female"
+                      />
+                      <FormControlLabel
+                        value="male"
+                        control={<Radio />}
+                        label="Male"
+                      />
+                    </RadioGroup>
+                    {errors.gender && (
+                      <div style={{ color: "red" }}>{errors.gender}</div>
+                    )}
+                  </FormControl>
                 </p>
               </div>
             </div>
-
-
           </div>
 
           <div
