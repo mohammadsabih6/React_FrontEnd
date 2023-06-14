@@ -15,7 +15,8 @@ const NewPassword = () => {
     const newUser = {
       id: 1,
       email: email,
-      token : token
+      token : token,
+      password:password
     };
 
     console.log(newUser)

@@ -58,51 +58,53 @@ const SignupForm = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
-
-    // const fnameError = validateFname(fname);
-    // const lnameError = validateLname(lname);
-    // const phoneError = validatePhone(phone);
-    // const addressError = validateAddress(address);
-    // const emailError = validateEmail(email);
-    // const cnicError = validateCnic(cnic);
-    // const passwordError = validatePassword(password);
-    // const genderError = validateGender(gender);
-    // const guardian_phone_numberError = validateGuardianPhoneNumber(
-    //   guardian_phone_number
-    // );
-    // const descriptionError = validateDescription(description);
-    // const SpecializationError = validateSpecialization(specialization);
-
-    // if (
-    //   emailError ||
-    //   passwordError ||
-    //   fnameError ||
-    //   lnameError ||
-    //   fnameError ||
-    //   phoneError ||
-    //   cnicError ||
-    //   genderError ||
-    //   guardian_phone_numberError ||
-    //   SpecializationError ||
-    //   descriptionError
-    // ) {
-    //   setErrors({
-    //     email: emailError,
-    //     password: passwordError,
-    //     phone: phoneError,
-    //     fname: fnameError,
-    //     lname: lnameError,
-    //     cnic: cnicError,
-    //     gender: genderError,
-    //     specialization: SpecializationError,
-    //     description: descriptionError,
-
-    //     guardian_phone_number: guardian_phone_numberError,
-    //     address: addressError,
-    //   });
-    //   return;
-    // }
-
+    console.log("Clicking-----")
+  
+    const fnameError = validateFname(fname);
+    const lnameError = validateLname(lname);
+    const phoneError = validatePhone(phone);
+    const addressError = validateAddress(address);
+    const emailError = validateEmail(email);
+    const cnicError = validateCnic(cnic);
+    const passwordError = validatePassword(password);
+    const genderError = validateGender(gender);
+    const roleError=validateRole(role);
+    const guardian_phone_numberError = validateGuardianPhoneNumber(
+      guardian_phone_number
+    );
+    const descriptionError = validateDescription(description);
+    const specializationError = validateSpecialization(specialization);
+  
+    if (
+      emailError ||
+      passwordError ||
+      fnameError ||
+      lnameError ||
+      phoneError ||
+      addressError ||
+      cnicError ||
+      genderError ||
+      guardian_phone_numberError ||
+      descriptionError ||
+      specializationError||
+      roleError
+    ) {
+      setErrors({
+        email: emailError,
+        password: passwordError,
+        fname: fnameError,
+        lname: lnameError,
+        phone: phoneError,
+        address: addressError,
+        cnic: cnicError,
+        gender: genderError,
+        role:roleError,
+        guardian_phone_number: guardian_phone_numberError,
+        description: descriptionError,
+        specialization: specializationError,
+      });
+    }
+  
     const newUser = {
       firstName: fname,
       lastName: lname,
@@ -113,19 +115,8 @@ const SignupForm = () => {
       password: password,
       gender: gender,
       role: role,
-      specialization: specialization,
-      description: description,
-
-      guardian_phone_number: guardian_phone_number,
     };
-    const patient={
-      guardian_phone_number:guardian_phone_number
-    }
-    const counselor={
-      specialization: specialization,
-      description: description
-    }
-
+  
     try {
       const response = await fetch("http://localhost:8082/user/signup", {
         method: "POST",
@@ -134,127 +125,155 @@ const SignupForm = () => {
         },
         body: JSON.stringify(newUser),
       });
+  
       if (response.ok) {
-                console.log("New User is registered!!!");
-                if (role === "COUNSELOR") {
-                  fetch("http://localhost:8081/counselor/post",{
-                    method: "POST",
-                    headers: {
-                    "Content-Type": "application/json",
-                  },
-                    body:JSON.stringify(counselor),
-                  });
-                }
-                else if(role==="PATIENT"){
-                  fetch("http://patient-app.us-west-2.elasticbeanstalk.com/patient/add",{
-                    method:"POST",
-                    headers:{
-                      "Content-Type":"application-json",
-                    },
-                    body:patient,
-                  });
-                }
-                console.log(newUser);
-                resetForm();
-              }
-      else {
+        console.log("New User is registered!!!");
+        if (role === "COUNSELOR") {
+          const counselorData = {
+            specialization: specialization,
+            description: description,
+          };
+          const counselorResponse = await fetch(
+            "http://localhost:8081/counselor/post",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(counselorData),
+            }
+          );
+          if (counselorResponse.ok) {
+            console.log("Counselor data is saved!");
+          } else {
+            console.log("Failed to save counselor data.");
+          }
+        } else if (role === "PATIENT") {
+          const patientData = {
+            guardian_phone_number: guardian_phone_number,
+          };
+          const patientResponse = await fetch(
+            "http://patient-app.us-west-2.elasticbeanstalk.com/patient/add",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(patientData),
+            }
+          );
+          if (patientResponse.ok) {
+            console.log("Patient data is saved!");
+          } else {
+            console.log("Failed to save patient data.");
+          }
+        }
+        console.log(newUser);
+        resetForm();
+      } else {
         console.log("Some error occurred");
       }
     } catch (error) {
       console.log(error);
     }
   };
+  const validateRole=(role)=>{
+    if(!role){
+      return "Select the role"
+    }
+    return null;
+  }
 
-  // const validateFname = (fname) => {
-  //   if (!fname) {
-  //     return "First name is required";
-  //   }
-  //   return null;
-  // };
+  const validateFname = (fname) => {
+    if (!fname) {
+      return "First name is required";
+    }
+    return null;
+  };
 
-  // const validateLname = (lname) => {
-  //   if (!lname) {
-  //     return "Last name is required";
-  //   }
-  //   return null;
-  // };
+  const validateLname = (lname) => {
+    if (!lname) {
+      return "Last name is required";
+    }
+    return null;
+  };
 
-  // const validatePhone = (phone) => {
-  //   const phoneRegex = /^\d{10}$/;
-  //   if (!phone) {
-  //     return "Phone number is required";
-  //   } else if (!phoneRegex.test(phone)) {
-  //     return "Invalid phone number";
-  //   }
-  //   return null;
-  // };
+  const validatePhone = (phone) => {
+    const phoneRegex = /^\d{10}$/;
+    if (!phone) {
+      return "Phone number is required";
+    } else if (!phoneRegex.test(phone)) {
+      return "Invalid phone number";
+    }
+    return null;
+  };
 
-  // const validateAddress = (address) => {
-  //   if (!address) {
-  //     return "Address is required";
-  //   }
-  //   return null;
-  // };
+  const validateAddress = (address) => {
+    if (!address) {
+      return "Address is required";
+    }
+    return null;
+  };
 
-  // const validateEmail = (email) => {
-  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   if (!email) {
-  //     return "Email is required";
-  //   } else if (!emailRegex.test(email)) {
-  //     return "Invalid email address";
-  //   }
-  //   return null;
-  // };
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      return "Email is required";
+    } else if (!emailRegex.test(email)) {
+      return "Invalid email address";
+    }
+    return null;
+  };
 
-  // const validateCnic = (cnic) => {
-  //   const cnicRegex = /^\d{5}-\d{7}-\d$/;
-  //   if (!cnic) {
-  //     return "CNIC is required";
-  //   } else if (!cnicRegex.test(cnic)) {
-  //     return "Invalid CNIC format (e.g., 12345-1234567-1)";
-  //   }
-  //   return null;
-  // };
+  const validateCnic = (cnic) => {
+    const cnicRegex = /^\d{5}-\d{7}-\d$/;
+    if (!cnic) {
+      return "CNIC is required";
+    } else if (!cnicRegex.test(cnic)) {
+      return "Invalid CNIC format (e.g., 12345-1234567-1)";
+    }
+    return null;
+  };
 
-  // const validatePassword = (password) => {
-  //   if (!password) {
-  //     return "Password is required";
-  //   } else if (password.length < 6) {
-  //     return "Password must be at least 6 characters long";
-  //   }
-  //   return null;
-  // };
+  const validatePassword = (password) => {
+    if (!password) {
+      return "Password is required";
+    } else if (password.length < 6) {
+      return "Password must be at least 6 characters long";
+    }
+    return null;
+  };
 
-  // const validateGender = (gender) => {
-  //   if (!gender) {
-  //     return "Gender is required";
-  //   }
-  //   return null;
-  // };
+  const validateGender = (gender) => {
+    if (!gender) {
+      return "Gender is required";
+    }
+    return null;
+  };
+  const validateGuardianPhoneNumber = (guardian_phone_number) => {
+    const phoneRegex = /^\d{10}$/;
+    if (!guardian_phone_number) {
+      return "Guardian phone number is required";
+    } else if (!phoneRegex.test(guardian_phone_number)) {
+      return "Invalid phone number";
+    }
+    return null;
+  };
 
-  // const validateGuardianPhoneNumber = (guardian_phone_number) => {
-  //   const phoneRegex = /^\d{10}$/;
-  //   if (!guardian_phone_number) {
-  //     return "Guardian phone number is required";
-  //   } else if (!phoneRegex.test(guardian_phone_number)) {
-  //     return "Invalid phone number";
-  //   }
-  //   return null;
-  // };
+  const validateSpecialization = (specialization) => {
+    if (!specialization) {
+      return "Specialization is required";
+    }
+    return null;
+  };
 
-  // const validateSpecialization = (specialization) => {
-  //   if (!specialization) {
-  //     return "Specialization is required";
-  //   }
-  //   return null;
-  // };
-
-  // const validateDescription = (description) => {
-  //   if (!description) {
-  //     return "Description is required";
-  //   }
-  //   return null;
-  // };
+  const validateDescription = (description) => {
+    if (!description) {
+      return "Description is required";
+    }
+    return null;
+  };
+  
 
   const handleGenderChange = (event) => {
     setGender(event.target.value);
@@ -354,6 +373,7 @@ const SignupForm = () => {
                   value="COUNSELOR"
                   control={<Radio />}
                   label="COUNSELOR"
+                  helperText={errors.role}
                   checked={role === "COUNSELOR"}
                   onChange={handleRoleChange}
                 />
@@ -368,6 +388,7 @@ const SignupForm = () => {
                   value="PATIENT"
                   control={<Radio />}
                   label="PATIENT"
+                  helperText={errors.role}
                   checked={role === "PATIENT"}
                   onChange={handleRoleChange}
                 />

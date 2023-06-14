@@ -1,32 +1,26 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
-// import reportWebVitals from './reportWebVitals';
-// import { AuthContext } from './components/AuthContext';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import SignupForm from './components/SignupPage';
+import Loginform from './components/LoginPage';
+import NewPassword from './components/NewPassword';
+import ForgetPassword from './components/ForgotPassword';
+import Dashboard from './components/dashboard';
+import { AuthProvider } from './components/AuthContext';
+import { Route, Routes } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <AuthContext>
-//     <App />
-//   </AuthContext>,
-//   document.getElementById("root")
-// );
-
-// // If you want to start measuring performance in your app, pass a function
-// // to log results (for example: reportWebVitals(console.log))
-// // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
-import React from "react";
-import ReactDOM from "react-dom";
-
-// import Loginform from "./Loginform";
-import { AuthProvider } from "./components/AuthContext";
-import App from "./App";
-
-ReactDOM.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>,
-  document.getElementById("root")
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<SignupForm />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/login" element={<Loginform />} />
+          <Route path="/new-password" element={<NewPassword />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

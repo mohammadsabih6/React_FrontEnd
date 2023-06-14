@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 function Dashboard() {
-  const history = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Set the initial login state
+  const navigate = useNavigate();
+  const { isLoggedIn, setLoginStatus } = useContext(AuthContext);
 
   const handleLogout = () => {
-    // Perform logout actions (e.g., clear session, reset state)
     console.log('Performing logout actions...');
-    setIsLoggedIn(false);
-    history.navigate('/login'); // Redirect to the login page after logout
+    setLoginStatus(false);
+    navigate('/login');
   };
 
-  if (!isLoggedIn) {
-    // If the user is not logged in, redirect to the login page
-    history.navigate('/login');
-    return null;
-  }
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/login'); // Redirect to the login page if not logged in
+    }
+    else {
+      navigate('/dashboard'); // Redirect to the login page if not logged in
+      setLoginStatus(true);
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div>
