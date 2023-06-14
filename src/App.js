@@ -5,10 +5,6 @@ import { Login } from '@mui/icons-material';
 import Loginform from './components/LoginPage';
 import NewPassword from './components/NewPassword';
 import ForgetPassword from './components/ForgotPassword';
-// import SignupForm from './components/SignupPage';
-// import LoginPage from './components/LoginPage';
-// import ForgetPassword from './components/ForgetPassword';
-// import NewPassword from './components/NewPassword';
 
 function App() {
   return (
@@ -21,8 +17,6 @@ function App() {
           <Route path="/new-password" element={<NewPassword />} />
         </Routes>
       </Router>
-      {/* <ForgetPassword/> */}
-      {/* <NewPassword/> */}
     </div>
   );
 }
