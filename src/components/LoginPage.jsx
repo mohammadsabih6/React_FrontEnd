@@ -134,12 +134,13 @@ const Loginform = () => {
           <div style={{ marginLeft: "37%"
         
           }}>
-            <div style={{ marginTop: "13%" }}>
+            <div style={{ marginTop: "13%",marginLeft:'12rem'  }}>
               <h2
                 style={{
                   fontFamily: "Quicksand, sans-serif",
                   fontSize: "2.8rem",
                   fontWeight: "bolder",
+                  
                   textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                 }}
               >
@@ -151,6 +152,7 @@ const Loginform = () => {
                   fontFamily: "Quicksand, sans-serif",
                   fontSize: "20px",
                   fontWeight: "bold",
+                  marginLeft:'3.5rem',
                 }}
               >
                 It's okay not to be okay
@@ -158,10 +160,11 @@ const Loginform = () => {
             </div>
             <h1
               style={{
-                marginTop: "8%",
+                marginTop: "7%",
                 fontFamily: "Quicksand, sans-serif",
                 fontSize: "1.8rem",
                 fontWeight: "bolder",
+                marginLeft:'18rem',
               }}
             >
               Login Now
@@ -177,7 +180,7 @@ const Loginform = () => {
             ></div>
           </div>
           <div style={{ marginLeft: "50%" }}>
-            <label style={{ marginRight: "22rem", fontSize: "1rem" ,fontFamily:"Quicksand, sans-serif" }}>
+            <label style={{ marginLeft: "1rem", fontSize: "1.1rem",fontWeight:'bolder' ,fontFamily:"Quicksand, sans-serif" }}>
               Enter Your Email:
             </label>
             <br />
@@ -211,7 +214,7 @@ const Loginform = () => {
           </div>
 
           <div style={{ marginLeft: "50%", marginTop: "10px"  ,fontFamily:"Quicksand, sans-serif" }}>
-            <label style={{ marginRight: "20.5rem", fontSize: "1rem" }}>
+            <label style={{ marginLeft: "1rem", fontSize: "1.1rem",fontWeight:'bolder' }}>
               Enter Your Password:
             </label>
             <br />
@@ -256,10 +259,9 @@ const Loginform = () => {
             <a
               href="/forget-password"
               style={{
-                marginLeft: "45rem",
-
+                marginLeft: "56rem",
                 fontFamily: "Quicksand, sans-serif",
-                fontSize: "12px",
+                fontSize: "15px",
                 fontWeight: "bold",
                 color: "black",
                 textDecoration: "none",
@@ -283,7 +285,7 @@ const Loginform = () => {
             onClick={handleLogin}
             style={{
               borderRadius: "10px",
-              marginLeft: "70rem",
+              marginLeft: "60rem",
               padding: "5px",
               width: "80px",
               marginTop: "15px",
@@ -300,12 +302,12 @@ const Loginform = () => {
           </Button>
           <p
             style={{
-              marginLeft: "35rem",
+              marginLeft: "50rem",
               paddingTop: "18px",
               marginBottom: "30px",
               fontFamily: "Quicksand, sans-serif",
-              fontSize: "13px",
-              fontWeight: "bold",
+              fontSize: "0.9rem",
+              fontWeight: "bolder",
               color: "black",
             }}
           >

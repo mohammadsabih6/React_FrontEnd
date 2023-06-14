@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import bg from "../images/bg.jpeg";
 
 const NewPassword = () => {
   const [password, setPassword] = useState("");  
@@ -42,6 +43,24 @@ const NewPassword = () => {
 
   return (
     <>
+    <div
+        className="login-container"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundPosition: "center",
+          height:'100vh',
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          // height: "100vh",
+          boxSizing: "border-box",
+          // "@media screen and (max-width: 600px)": {
+          //   // flexDirection: "column",
+          //   // width:"160vh",
+          //   justifyContent: "center",
+          //   marginLeft:'-5rem'
+          // },
+        }}
+      >
       <Box
         component="form"
         sx={{
@@ -50,13 +69,15 @@ const NewPassword = () => {
           justifyContent: 'center',
           '& .MuiTextField-root': {
             m: 1,
-            width: '15rem',
+            marginTop:'35px',
+            width: '19rem',
+            marginRight:'3.0rem',
             backgroundColor: 'white',
             color: 'black',
             borderRadius: '10px',
             borderColor: 'white',
           },
-          backgroundColor: '#b0d2cb'
+          // backgroundColor: '#b0d2cb'
         }}  
         noValidate
         autoComplete="off"
@@ -72,7 +93,7 @@ const NewPassword = () => {
               textAlign: "center",
               marginLeft: "25rem"
             }}
-          >Sign Up</h1>
+          >Forgot Password</h1>
           <div style={{ textAlign: "left", marginLeft: "15rem", marginTop: "10rem",display: "block" }}>
             <h2
               style={{
@@ -98,12 +119,12 @@ const NewPassword = () => {
      
         </div>
 
-        <div className="thirdrow" style={{ display: "flex", marginLeft: "50rem", marginTop: "3rem" }}>
+        <div className="thirdrow" style={{ display: "flex", marginLeft: "50rem",marginTop: "-10rem" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
-            <label style={{ marginRight: "7rem", fontSize: "0.8rem" }}>Enter Your Password:</label>
+            <label style={{ marginRight: "2.5rem" ,fontSize: "1.4rem", fontFamily: "Quicksand, sans-serif",fontWeight: "bolder"}}>Enter Your New Password</label>
             <TextField
               id="outlined-multiline-flexible"
-              label="Password"
+              label="New Password"
               type="password"
               required
               value={password}
@@ -112,12 +133,13 @@ const NewPassword = () => {
           </div>
         </div>
 
-        <div style={{ marginBottom: '1rem', borderRadius: '10px', textAlign: 'center' }}>
-          <button type="submit" style={{ borderRadius: '10px', backgroundColor: '#6b8b85', color: 'white', fontSize: '20px' }}>
-            Change Password
+        <div style={{ marginBottom: '1rem', borderRadius: '10px',marginLeft:'27rem',marginTop:'40px', textAlign: 'center' }}>
+          <button type="submit" style={{ borderRadius: '10px',padding:'15px',color:'black' ,backgroundColor: "white", fontSize: '20px' }}>
+            Submit
           </button>
         </div>
       </Box>
+      </div>
     </>
   );
 }
