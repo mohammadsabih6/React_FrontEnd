@@ -249,7 +249,7 @@ const SignupForm = () => {
          paddingTop: "1rem",
           
          borderRadius: "10px",
-          maxWidth: "500px",
+          maxWidth: "550px",
           width: "100%",
           border: "1px solid #717377",
           
@@ -308,7 +308,7 @@ const SignupForm = () => {
               )}
             </FormControl>
           </Box>
-          <Box sx={{paddingLeft: "1rem"}}>
+          <Box sx={{paddingLeft: "3rem"}}>
             <TextField
               styles={{ margin: "2rem", border: "2px solid red" }}
               label="First Name"
@@ -477,9 +477,11 @@ const SignupForm = () => {
               
       
               fontFamily: "Quicksand, sans-serif",
+
               fontSize: "13px",
               fontWeight: "bold",
               color: "black",
+              margin: "1rem",
             }}>
             Already have an account? <a href="/login">Sign in now</a>
           </p>
