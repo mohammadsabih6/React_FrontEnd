@@ -12,6 +12,7 @@ import {
 import plan_background from "../images/plan_background.jpeg";
 import doctor from "../images/doctor.png";
 import patient from "../images/patient.png";
+import "./SignUp.module.css";
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -243,8 +244,9 @@ const SignupForm = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "rgba(2, 84, 100, 0.8)",
-          padding: "2rem  0rem 0rem 3rem",
+          backgroundColor: "rgba(2, 84, 100, 0.7)",
+         marginTop: "1rem",
+         paddingTop: "1rem",
           
          borderRadius: "10px",
           maxWidth: "500px",
@@ -273,6 +275,7 @@ const SignupForm = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              
             }}>
             <img
               src={formData.role === "COUNSELOR" ? doctor : patient}
@@ -305,7 +308,7 @@ const SignupForm = () => {
               )}
             </FormControl>
           </Box>
-          <Box styles={{ marginBottom: "10rem" }}>
+          <Box sx={{paddingLeft: "1rem"}}>
             <TextField
               styles={{ margin: "2rem", border: "2px solid red" }}
               label="First Name"
@@ -462,7 +465,7 @@ const SignupForm = () => {
               )}
             </FormControl>
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
+          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 1 }}>
             <Button variant="contained" type="submit" sx={{ width: "25%" }}>
               Sign Up
             </Button>
@@ -470,9 +473,9 @@ const SignupForm = () => {
         </form>
         <p
             style={{
-              // marginLeft: "30rem",
-              paddingTop: "5px",
-              marginBottom: "30px",
+              
+              
+      
               fontFamily: "Quicksand, sans-serif",
               fontSize: "13px",
               fontWeight: "bold",
