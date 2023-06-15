@@ -245,14 +245,14 @@ const SignupForm = () => {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "rgba(2, 84, 100, 0.6)",
-         marginTop: "1rem",
-         paddingTop: "1rem",
-          
-         borderRadius: "10px",
+          marginTop: "1rem",
+          paddingTop: "1rem",
+
+          borderRadius: "10px",
           maxWidth: "550px",
           width: "100%",
           border: "1px solid #717377",
-          
+
           borderRadius: "16px",
           boxShadow: "0px 3px 15px rgba(113,115,119,0.7)",
         }}>
@@ -275,7 +275,6 @@ const SignupForm = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              
             }}>
             <img
               src={formData.role === "COUNSELOR" ? doctor : patient}
@@ -308,7 +307,7 @@ const SignupForm = () => {
               )}
             </FormControl>
           </Box>
-          <Box sx={{paddingLeft: "3rem"}}>
+          <Box sx={{ paddingLeft: "3rem" }}>
             <TextField
               styles={{ margin: "2rem", border: "2px solid red" }}
               label="First Name"
@@ -351,7 +350,7 @@ const SignupForm = () => {
               required
               sx={{ mb: 1, ml: 2 }}
             />
-            <TextField
+            {/* <TextField
               label="Address"
               name="address"
               value={formData.address}
@@ -360,7 +359,7 @@ const SignupForm = () => {
               helperText={errors.address}
               required
               sx={{ mb: 1 }}
-            />
+            /> */}
             <TextField
               label="Email"
               name="email"
@@ -369,7 +368,7 @@ const SignupForm = () => {
               error={!!errors.email}
               helperText={errors.email}
               required
-              sx={{ mb: 1, ml: 2 }}
+              sx={{ mb: 1 }}
             />
             <TextField
               label="CNIC"
@@ -379,7 +378,7 @@ const SignupForm = () => {
               error={!!errors.cnic}
               helperText={errors.cnic}
               required
-              sx={{ mb: 1 }}
+              sx={{ mb: 1, ml: 2 }}
             />
             <TextField
               label="Password"
@@ -390,7 +389,7 @@ const SignupForm = () => {
               error={!!errors.password}
               helperText={errors.password}
               required
-              sx={{ mb: 1, ml: 2 }}
+              sx={{ mb: 1 }}
             />
 
             {/* from role is here */}
@@ -404,7 +403,7 @@ const SignupForm = () => {
                   error={!!errors.specialization}
                   helperText={errors.specialization}
                   required={formData.role === "COUNSELOR"}
-                  sx={{ mb: 1 }}
+                  sx={{ mb: 1, ml: 2 }}
                 />
                 <TextField
                   label="Description"
@@ -414,7 +413,7 @@ const SignupForm = () => {
                   error={!!errors.description}
                   helperText={errors.description}
                   required={formData.role === "COUNSELOR"}
-                  sx={{ mb: 1, ml: 2 }}
+                  sx={{ mb: 1, ml: 13 }}
                 />
               </>
             )}
@@ -427,7 +426,7 @@ const SignupForm = () => {
                 error={!!errors.guardian_phone_number}
                 helperText={errors.guardian_phone_number}
                 required={formData.role === "PATIENT"}
-                sx={{ mb: 1, ml: 15 }}
+                sx={{ mb: 1, ml: 2 }}
               />
             )}
             <br />
@@ -472,21 +471,17 @@ const SignupForm = () => {
           </Box>
         </form>
         <p
-            style={{
-              
-              
-      
-              fontFamily: "Quicksand, sans-serif",
+          style={{
+            fontFamily: "Quicksand, sans-serif",
 
-              fontSize: "13px",
-              fontWeight: "bold",
-              color: "black",
-              margin: "1rem",
-            }}>
-            Already have an account? <a href="/login">Sign in now</a>
-          </p>
+            fontSize: "13px",
+            fontWeight: "bold",
+            color: "black",
+            margin: "1rem",
+          }}>
+          Already have an account? <a href="/login">Sign in now</a>
+        </p>
       </Box>
-     
     </Box>
   );
 };
