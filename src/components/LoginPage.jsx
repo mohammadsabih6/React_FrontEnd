@@ -88,7 +88,7 @@ const Loginform = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          // marginRight: "10rem"
+        
         }}
       >
         <Box
@@ -183,6 +183,20 @@ const Loginform = () => {
               </span>
             )}
           </FormControl>
+          <a
+              href="/forget-password"
+              style={{
+                marginLeft: "16rem",
+                fontFamily: "Quicksand, sans-serif",
+                fontSize: "15px",
+                fontWeight: "bold",
+                color: "black",
+                textDecoration: "none",
+
+              }}
+            >
+              Forgotten Password?
+            </a>
 
           <Button
             type="submit"

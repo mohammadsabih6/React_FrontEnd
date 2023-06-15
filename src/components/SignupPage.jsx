@@ -139,6 +139,48 @@ const SignupForm = () => {
       guardian_phone_number,
     } = formData;
 
+    if (!fname) {
+      formErrors.fname = "First Name is required";
+    }
+
+    if (!lname) {
+      formErrors.lname = "Last Name is required";
+    }
+
+    const phoneRegex = /^\d{10}$/;
+    if (!phone) {
+      formErrors.phone = "Phone number is required";
+    } else if (!phoneRegex.test(phone)) {
+      formErrors.phone = "Invalid phone number";
+    }
+
+    if (!address) {
+      formErrors.address = "Address is required";
+    }
+
+    if (!gender) {
+      formErrors.gender = "Gender is required";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      formErrors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      formErrors.email = "Invalid email address";
+    }
+
+    const cnicRegex = /^\d{5}-\d{7}-\d$/;
+    if (!cnic) {
+      formErrors.cnic = "CNIC is required";
+    } else if (!cnicRegex.test(cnic)) {
+      formErrors.cnic = "Invalid CNIC format (e.g., 12345-1234567-1)";
+    }
+
+    if (!password) {
+      formErrors.password = "Password is required";
+    } else if (password.length < 6) {
+      formErrors.password = "Password must be at least 6 characters long";
+    }
+
     if (!role) {
       formErrors.role = "Role is required";
     }
@@ -246,8 +288,7 @@ const SignupForm = () => {
           alignItems: "center",
           marginTop: "1rem",
           paddingTop: "1rem",
-          borderRadius: "10px",
-          maxWidth: "550px",
+          maxWidth: "600px",
           width: "100%",
           borderRadius: "16px",
           boxShadow: "0px 3px 15px rgba(113,115,119,0.7)",
@@ -262,7 +303,6 @@ const SignupForm = () => {
             fontFamily: "Quicksand, sans-serif",
             fontSize: "2rem",
             fontWeight: "bolder",
-            
           }}>
           Sign Up
         </Typography>
@@ -463,10 +503,17 @@ const SignupForm = () => {
             </FormControl>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 1 }}>
-            <Button variant="contained" type="submit" sx={{ width: "25%",backgroundColor: "black",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "#333"}, }}>
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                width: "25%",
+                backgroundColor: "black",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "#333",
+                },
+              }}>
               Sign Up
             </Button>
           </Box>
