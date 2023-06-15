@@ -244,17 +244,15 @@ const SignupForm = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "rgba(2, 84, 100, 0.6)",
           marginTop: "1rem",
           paddingTop: "1rem",
-
           borderRadius: "10px",
           maxWidth: "550px",
           width: "100%",
-          border: "1px solid #717377",
-
           borderRadius: "16px",
           boxShadow: "0px 3px 15px rgba(113,115,119,0.7)",
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backdropFilter: "blur(5px)",
         }}>
         <Typography
           variant="h5"
@@ -264,7 +262,7 @@ const SignupForm = () => {
             fontFamily: "Quicksand, sans-serif",
             fontSize: "2rem",
             fontWeight: "bolder",
-            textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            
           }}>
           Sign Up
         </Typography>
@@ -465,7 +463,10 @@ const SignupForm = () => {
             </FormControl>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 1 }}>
-            <Button variant="contained" type="submit" sx={{ width: "25%" }}>
+            <Button variant="contained" type="submit" sx={{ width: "25%",backgroundColor: "black",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "#333"}, }}>
               Sign Up
             </Button>
           </Box>
