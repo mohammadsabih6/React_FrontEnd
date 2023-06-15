@@ -6,6 +6,7 @@ import NewPassword from './components/NewPassword';
 import ForgetPassword from './components/ForgotPassword';
 import Dashboard from './components/dashboard';
 import { AuthProvider } from './components/AuthContext';
+import Signup from './components/Signup';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           </Routes>
         </AuthProvider>
         </BrowserRouter>
+     
     </div>
     
   );
