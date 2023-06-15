@@ -244,7 +244,7 @@ const SignupForm = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "rgba(2, 84, 100, 0.7)",
+          backgroundColor: "rgba(2, 84, 100, 0.6)",
          marginTop: "1rem",
          paddingTop: "1rem",
           
