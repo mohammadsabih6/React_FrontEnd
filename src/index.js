@@ -1,24 +1,26 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import SignupForm from './components/SignupPage';
-import Loginform from './components/LoginPage';
-import NewPassword from './components/NewPassword';
-import ForgetPassword from './components/ForgotPassword';
-import Dashboard from './components/dashboard';
-import { AuthProvider } from './components/AuthContext';
+import SignupForm from './Pages/SignupPage';
+import Loginform from './Pages/LoginPage';
+import NewPassword from './Pages/NewPassword';
+import ForgetPassword from './Pages/ForgotPassword';
+import Dashboard from './Pages/dashboard';
+import { AuthProvider } from './Pages/AuthContext';
 import { Route, Routes } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-
+import Home from './Pages/Home';
+import Sidebar from './global/Sidebar';
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<SignupForm />} />
+          <Route path="/signup" element={<SignupForm />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/login" element={<Loginform />} />
           <Route path="/new-password" element={<NewPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/home" element={<Sidebar><Home /></Sidebar>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
