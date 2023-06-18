@@ -9,6 +9,8 @@ import Dashboard from './Pages/dashboard';
 import { AuthProvider } from './Pages/AuthContext';
 import Home from './Pages/Home';
 import Sidebar from './global/Sidebar';
+import UserProfile from './components/UserProfile';
+import UserProfile  from './Pages/UserProfile';
 // import SignupForm from './components/SignupPage';
 // import Loginform from './components/LoginPage';
 // import NewPassword from './components/NewPassword';
@@ -20,7 +22,7 @@ import Sidebar from './global/Sidebar';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+     <BrowserRouter>
         <AuthProvider>
             <Routes>
             <Route path="/home" element={<Home />} />
@@ -30,9 +32,12 @@ function App() {
               <Route path="/new-password" element={<NewPassword />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/home" element={<Sidebar><Home /></Sidebar>} />
-            </Routes> {/* Fix typo here */}
+              <Route path="/profile" element={<UserProfile />} />
+            </Routes> 
+            {/* Fix typo here */}
         </AuthProvider>
-      </BrowserRouter>
+      </BrowserRouter> 
+      <UserProfile />
     </div>
   );
 }
