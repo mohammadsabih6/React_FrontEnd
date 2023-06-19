@@ -1,10 +1,11 @@
 import React from "react";
 
 import Sidebar from "../global/Sidebar";
-import { Box, Button, IconButton } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import { Box, Button, IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 import doctor from "../images/doctor.png";
 const UserProfile = () => {
+  
   return (
     <>
       <Sidebar />
@@ -70,14 +71,13 @@ const UserProfile = () => {
             flexDirection: "column",
             justifyContent: "space-between",
           }}>
-          <Box sx={{
-            display:"flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}>
-            <h2>
-              Personal Information:
-            </h2>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}>
+            <h2>Personal Information:</h2>
             <Button
               variant="contained"
               type="submit"
@@ -89,11 +89,10 @@ const UserProfile = () => {
                   backgroundColor: "#333",
                 },
               }}>
-                 Edit
-             <IconButton sx={{ color: "white" }}>
-              <EditIcon />
-            </IconButton>
-             
+              Edit
+              <IconButton sx={{ color: "white" }}>
+                <EditIcon />
+              </IconButton>
             </Button>
           </Box>
           <Box
@@ -101,7 +100,6 @@ const UserProfile = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-around",
-             
             }}>
             <p>First Name:</p>
             <p>Last Name:</p>
@@ -111,8 +109,7 @@ const UserProfile = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-around",
-              marginTop: "-2rem",
-              
+              marginTop: "1rem",
             }}>
             <h4>First Name:</h4>
             <h4>Last Name:</h4>
@@ -123,7 +120,7 @@ const UserProfile = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-around",
-             
+              marginTop: "2rem",
             }}>
             <p>Email Address:</p>
             <p>Password:</p>
@@ -133,8 +130,7 @@ const UserProfile = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-around",
-              marginTop: "-2rem",
-              
+              marginTop: "1rem",
             }}>
             <h4>First Name:</h4>
             <h4>Last Name:</h4>
@@ -145,7 +141,7 @@ const UserProfile = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-around",
-              
+              marginTop: "2rem",
             }}>
             <p>Phone Number:</p>
             <p>Address</p>
@@ -155,15 +151,12 @@ const UserProfile = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-around",
-              marginTop: "-2rem",
-              
+              marginTop: "1rem",
             }}>
             <h4>First Name:</h4>
             <h4>Last Name:</h4>
           </Box>
         </Box>
-
-        
       </Box>
     </>
   );
