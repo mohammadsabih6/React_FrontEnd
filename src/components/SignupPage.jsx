@@ -148,6 +148,7 @@ const SignupForm = () => {
     }
 
     const phoneRegex = /^\d{10}$/;
+
     if (!phone) {
       formErrors.phone = "Phone number is required";
     } else if (!phoneRegex.test(phone)) {
@@ -535,4 +536,3 @@ const SignupForm = () => {
 };
 
 export default SignupForm;
-

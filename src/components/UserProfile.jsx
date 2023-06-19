@@ -1,11 +1,37 @@
-import React from "react";
+import React,{useState} from "react";
 
 import Sidebar from "../global/Sidebar";
+
 import { Box, Button, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
+
 import doctor from "../images/doctor.png";
 const UserProfile = () => {
-  
+
+  const [editMode, setEditMode] = useState(false);
+const [firstName, setFirstName] = useState("Atia Khan");
+const [lastName, setLastName] = useState("");
+const [password, setPassword] = useState("");
+const [address, setAddress] = useState("");
+const [email, setEmail] = useState("");
+const [phone, setPhone] = useState("");
+const [cnic, setCnic] = useState("");
+const [specialization, setSpecilization] = useState("");
+const [description, setDescription] = useState("");
+const [guardian_phone_number, setGuardian_phone_number] = useState("");
+
+
+const handleEdit = () => {
+  setEditMode(true);
+};
+
+const handleSave = () => {
+  // Perform the save/update logic here
+  setEditMode(false); // Disable edit mode after saving
+};
+
+
   return (
     <>
       <Sidebar />
@@ -78,22 +104,41 @@ const UserProfile = () => {
               justifyContent: "space-between",
             }}>
             <h2>Personal Information:</h2>
-            <Button
-              variant="contained"
-              type="submit"
-              sx={{
-                width: "10%",
-                backgroundColor: "black",
-                color: "white",
-                "&:hover": {
-                  backgroundColor: "#333",
-                },
-              }}>
-              Edit
-              <IconButton sx={{ color: "white" }}>
-                <EditIcon />
-              </IconButton>
-            </Button>
+
+            
+            {!editMode ? (
+              <Button
+                variant="contained"
+                onClick={handleEdit}
+                startIcon={<EditIcon />}
+                sx={{
+                  width: "10%",
+                  backgroundColor: "black",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "#333",
+                  },
+                }}
+              >
+                Edit
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                onClick={handleSave}
+                startIcon={<SaveIcon />}
+                sx={{
+                  width: "10%",
+                  backgroundColor: "black",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "#333",
+                  },
+                }}
+              >
+                Save
+              </Button>
+            )}
           </Box>
           <Box
             sx={{
@@ -111,8 +156,28 @@ const UserProfile = () => {
               justifyContent: "space-around",
               marginTop: "1rem",
             }}>
-            <h4>First Name:</h4>
-            <h4>Last Name:</h4>
+            {/* <h4>First Name:</h4>
+            <h4>Last Name:</h4> */}
+
+{!editMode ? (
+              <>
+                <p>{firstName}</p>
+                <p>{lastName}</p>
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </>
+            )}
           </Box>
 
           <Box
@@ -132,8 +197,25 @@ const UserProfile = () => {
               justifyContent: "space-around",
               marginTop: "1rem",
             }}>
-            <h4>First Name:</h4>
-            <h4>Last Name:</h4>
+            {!editMode ? (
+              <>
+                <p>{email}</p>
+                <p>{password}</p>
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </>
+            )}
           </Box>
 
           <Box
@@ -153,8 +235,25 @@ const UserProfile = () => {
               justifyContent: "space-around",
               marginTop: "1rem",
             }}>
-            <h4>First Name:</h4>
-            <h4>Last Name:</h4>
+              {!editMode ? (
+              <>
+                <p>{phone}</p>
+                <p>{address}</p>
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </>
+            )}
           </Box>
         </Box>
       </Box>
